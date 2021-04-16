@@ -1,0 +1,176 @@
+
+
+<?php
+	if (!defined('_PS_VERSION_')) {
+	    exit;
+	}
+
+	//use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
+
+	class banner extends Module 
+	{
+		public function __construct()
+    	{
+	        $this->name = 'banner';
+	        $this->tab = 'front_office_features';
+	        $this->version = '1.0.0';
+	        $this->author = 'Lamin Jatta';
+	        $this->need_instance = 0;
+	        $this->ps_versions_compliancy = [
+	            'min' => '1.6',
+	            'max' => _PS_VERSION_
+	        ];
+	        $this->bootstrap = true;
+
+	        parent::__construct();
+
+	        $this->displayName = $this->l('Banner module');
+	        $this->description = $this->l('Description of sales.');
+
+	        $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
+
+	        if (!Configuration::get('MYMODULE_NAME')) {
+	            $this->warning = $this->l('No name provided');
+	        }
+	   	}
+
+	   	//INSTALLATION FUNCTION
+		public function install()
+		{
+			/*
+			* Check that the multystore features are enabled, and if so, set the current context to shop
+			* on this installation of Prestershop.
+			*/
+		    if (Shop::isFeatureActive()) {
+		        Shop::setContext(Shop::CONTEXT_ALL);
+		    }
+
+			/*
+			* first check that the module parent class is install or
+			* check that the module can be attach to the left column hook or
+			* check that the module can be attach the header hook
+			* 
+			*/
+		    if (!parent::install() ||
+		        !$this->registerHook('leftColumn') ||
+		        !$this->registerHook('header') ||
+		        !Configuration::updateValue('banner', 'my friend')
+		    ) {
+		        return false;
+		    }
+
+		    return true;
+		}
+
+		// UNINSTALLATION FUNCTION
+		public function uninstall()
+		{
+		    if (!parent::uninstall() ||
+		        !Configuration::deleteByName('banner')
+		    ) {
+		        return false;
+		    }
+
+		    return true;
+		}
+
+		public function getContent()
+		{
+			$html = '';
+        $html .= '
+            <form action="'.$_SERVER['REQUEST_URI'].'" method="post" class="bannerForm">
+                <div class="panel">
+                    <div class="panel-heading">'.$this->1('Settings').'</div>
+        ';
+
+        $html .= '
+			<div class="form-group">
+				<label class="control-label col-lg-3">'.$this->1('My Field')'</label>
+				<div class="col-lg-6">
+				<input type="email" name="user_email" placeholder="Enter your email" />
+				</div>
+			</div>
+        ';
+
+		$html .= '';
+
+        $html .= '
+                </div>
+            </form> 
+        ';
+
+		}
+
+		// THE HOOK THAT ENABLES TO DISPLAY CONTENT
+		public function hookHeader($params){
+			return 'CHECK BANNER';
+		}
+
+
+	}
+
+
+
+
+
+	<div class="panel">
+	<form action="'.$_SERVER['REQUEST_URI'].'" method="post" class="bannerForm">
+	<div class="panel">
+        <div class="panel-heading"> {l s='Banner Lamin Settings' mod='bannerlamin'}</div>
+		<div class="form-group">
+			<div class="form-row">
+				<label class="control-label col-lg-3">Text Colour</label>
+				<div class="col-lg-6">
+					<input class="form-control" type="text" name="text_colour" placeholder="Enter Text Colour" />
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="control-label col-lg-3">Background Colour</label>
+				<div class="col-lg-6">
+					<input class="form-control" type="text" name="bg_colour" placeholder="Enter Background Colour" />
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="control-label col-lg-3">Content</label>
+				<div class="col-lg-6">
+					<textarea class="form-control" type="textarea" name="content" placeholder="Enter Text Content"> </textarea>
+				</div>
+			</div>
+			<div class="form-row">
+				<label for="start" class="control-label col-lg-3">Start date:</label>
+				<div class="col-lg-6">
+					<input class="form-control" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" >
+				</div>
+			</div>
+			<div class="form-row">
+				<label for="end" class="control-label col-lg-3">End date:</label>
+				<div class="col-lg-6">
+					<input class="form-control" type="date" id="start" name="trip-start" value="2018-07-22" min="2020-01-01">
+				</div>
+			</div>
+		</div>	
+	</div>	
+	</form> 
+</div>
+
+/**
+     * Don't forget to create update methods if needed:
+     * http://doc.prestashop.com/display/PS16/Enabling+the+Auto-Update
+     */
+
+'BANNER_ACCOUNT_EMAIL' => Configuration::get('BANNER_ACCOUNT_EMAIL', 'contact@prestashop.com'),
+//'prefix' => '<i class="icon icon-envelope"></i>',
+
+                    // array(
+                    //     'col' => 3,
+                    //     'type' => 'text',
+                    //     'prefix' => '<i class="icon icon-envelope"></i>',
+                    //     'desc' => $this->l('Enter a valid email address'),
+                    //     'name' => 'BANNER_ACCOUNT_EMAIL',
+                    //     'label' => $this->l('Email'),
+                    // ),
+                    // array(
+                    //     'type' => 'password',
+                    //     'name' => 'BANNER_ACCOUNT_PASSWORD',
+                    //     'label' => $this->l('Password'),
+                    // ),
