@@ -138,85 +138,42 @@ class BannerAdminController extends ModuleAdminController
             'input' => [
                 [
                     'type' => 'text',
-                    'label' => $this->l('Link del banner'),
-                    'desc' => 'Es. (https://mywebsite.ext/super-offer',
-                    'placeholder' => 'https://mywebsite.ext/super-offer',
-                    'name' => 'href',
+                    'label' => $this->l('BANNER_TEXT_COLOUR'),
+                    'desc' => 'Hex Colour Code',
+                    'placeholder' => '#ffffff',
+                    'name' => 'TEXT COLOUR',
                     'required' => false
                 ],
                 [
                     'type' => 'text',
-                    'label' => $this->l('Colore'),
-                    'desc' => 'Colore in HEX (es. #FFFFFF)',
-                    'name' => 'color',
+                    'label' => $this->l('BANNER_BACKGROUND_COLOUR'),
+                    'desc' => 'Hex Colour Code (es. #FFFFFF)',
+                    'name' => 'BACKGROUND COLOUR',
                     'required' => true,
                 ],
                 [
                     'type' => 'text',
-                    'label' => $this->l('Colore di sfondo'),
-                    'desc' => 'Colore in HEX (es. #000000)',
-                    'name' => 'background_color',
+                    'label' => $this->l('Content'),
+                    'desc' => 'This is a discount',
+                    'name' => 'BANNER CONTENT',
                     'required' => true
                 ],
                 [
-                    'type' => 'switch',
-                    'label' => $this->l('Mostra desktop'),
-                    'name' => 'show_desktop',
-                    'required' => false,
-                    'class' => 't',
-                    'is_bool' => true,
-                    'values' => [
-                        [
-                            'id' => 'show_desktop_1',
-                            'value' => 1,
-                            'label' => $this->l('Sì'),
-                        ],
-                        [
-                            'id' => 'show_desktop_0',
-                            'value' => 0,
-                            'label' => $this->l('No'),
-                        ],
-                    ],
+                    'type' => 'date',
+                    'name' => 'BANNER_START_DATE',
+                    'label' => $this->l('Start Date'),
+                    'required' => true
+                ],
+                [
+                    'type' => 'date',
+                    'name' => 'BANNER_END_DATE',
+                    'label' => $this->l('End Date'),
+                    'required' => false
                 ],
                 [
                     'type' => 'switch',
-                    'label' => $this->l('Mostra mobile'),
-                    'name' => 'show_mobile',
-                    'required' => false,
-                    'class' => 't',
-                    'is_bool' => true,
-                    'values' => [
-                        [
-                            'id' => 'show_mobile_1',
-                            'value' => 1,
-                            'label' => $this->l('Sì'),
-                        ],
-                        [
-                            'id' => 'show_mobile_0',
-                            'value' => 0,
-                            'label' => $this->l('No'),
-                        ],
-                    ],
-                ],
-                [
-                    'type' => 'switch',
-                    'label' => $this->l('Attivo'),
-                    'name' => 'active',
-                    'required' => false,
-                    'class' => 't',
-                    'is_bool' => true,
-                    'values' => [
-                        [
-                            'id' => 'active_1',
-                            'value' => 1,
-                            'label' => $this->l('Sì'),
-                        ],
-                        [
-                            'id' => 'active_0',
-                            'value' => 0,
-                            'label' => $this->l('No'),
-                        ],
-                    ],
+                    'label' => $this->l('Live Mode (Always)'),
+                    'name' => 'BANNER_LIVE_MODE',
                 ],
             ],
             'submit' => [
