@@ -1,6 +1,6 @@
 <?php
 // Require Models
-require_once(dirname(__FILE__) . '/classes/banner_db.php');
+require_once(dirname(__FILE__) . '/classes/bannerDb.php');
 
 class BannerAdminController extends ModuleAdminController
 {
@@ -114,7 +114,7 @@ class BannerAdminController extends ModuleAdminController
 
         if ($this->display == 'add' || $this->display == 'edit') {
             $this->page_header_toolbar_btn['back_to_list'] = array(
-                'href' => Context::getContext()->link->getAdminLink('BannerAdminController'),
+                'href' => Context::getContext()->link->getAdminLink('BannerAdmin'),
                 'desc' => $this->l('Back to list', null, null, false),
                 'icon' => 'process-icon-back',
             );

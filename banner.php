@@ -6,7 +6,7 @@ if (!defined('_PS_VERSION_')) {
 }
 
 // Require Models
-require_once(dirname(__FILE__) . '/classes/banner_db.php');
+require_once(dirname(__FILE__) . '/classes/bannerDb.php');
 
 class Banner extends Module
 {
@@ -36,15 +36,22 @@ class Banner extends Module
     public function install()
     {
         Configuration::updateValue('BANNER_LIVE_MODE', false);
-
-        return parent::install() &&
+        
+        if (parent::install() &&
             $this->registerHook('header') &&
             $this->registerHook('backOfficeHeader') &&
-            $this->registerHook('displayHeader') &&
-
-            $this->installTabs()&&
+            $this->registerHook('displayHeader')
+        ) {
+            $this->installTabs();
+            
             // Create db tables
             include(dirname(__FILE__).'/sql/install.php');
+
+            return  true;
+        }
+
+        return false;
+        
     }
 
     public function uninstall()
@@ -59,7 +66,7 @@ class Banner extends Module
 
         return parent::uninstall(); 
         // Remove tabs
-        $this->uninstallTabs(); 
+            $this->uninstallTabs(); 
 
         // Delete db tables
         include(dirname(__FILE__).'/sql/uninstall.php');
@@ -70,7 +77,7 @@ class Banner extends Module
     public function installTabs()
     {
         $tab  =  new Tab();
-        $tab->class_name = 'bannerAD';
+        $tab->class_name = 'BannerAdmin';
         $tab->module = $this->name;
         $tab->id_parent = Tab::getIdFromClassName('DEFAULT');
         $tab->icon = 'settings_applications';
@@ -91,7 +98,7 @@ class Banner extends Module
 
     public function uninstallTabs()
     {
-        $idTab = Tab::getIdFromClassName('AdminBanner');
+        $idTab = Tab::getIdFromClassName('BannerAdmin');
         if($idTab){
             $tab = new Tab($idTab);
             try{

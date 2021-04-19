@@ -1,6 +1,6 @@
 <?php
 
-class Banner_db extends ObjectModel
+class BannerDb extends ObjectModel
 {
     public $id;
     public $color;
