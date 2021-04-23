@@ -1,6 +1,6 @@
 <?php
 // Require Models
-require_once(dirname(__FILE__) . '/classes/bannerDb.php');
+//require_once(dirname(__FILE__) . '/classes/bannerDb.php');
 
 class BannerAdminController extends ModuleAdminController
 {
@@ -110,7 +110,7 @@ class BannerAdminController extends ModuleAdminController
 
     public function initPageHeaderToolbar()
     {
-        $this->page_header_toolbar_title = $this->l('Banner');
+        $this->page_header_toolbar_title = $this->l('BannerAdmin');
 
         if ($this->display == 'add' || $this->display == 'edit') {
             $this->page_header_toolbar_btn['back_to_list'] = array(

@@ -83,7 +83,7 @@ class Banner extends Module
         $tab->icon = 'settings_applications';
         $languages = Language::getLanguages();
         foreach($languages as $lang){
-            $tab->name [$lang['id_lang']] = $this->l('Banner');
+            $tab->name [$lang['id_lang']] = $this->l('BannerAdmin');
         } 
         try { 
             $tab->save();
