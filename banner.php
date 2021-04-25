@@ -260,6 +260,13 @@ class Banner extends Module
         foreach (array_keys($form_values) as $key) {
             Configuration::updateValue($key, Tools::getValue($key));
         }
+
+        if (isset($params[$form_values]) && $params[$form_values] != '') {
+            Db::getInstance()->execute(
+                "INSERT INTO `"._DB_PREFIX_."multi_banner` (`id_multi_banner`, `color`, 
+                `background_color`, `content`, `start_date`, `end_date`, `active`, `priority`) 
+            VALUES (".intval($Banner->id).", 0, 0, '".$_POST['text']."', 0, NOW())");
+        }
     }
 
     /**
@@ -302,4 +309,3 @@ class Banner extends Module
 
 
 }
-

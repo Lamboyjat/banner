@@ -8,7 +8,7 @@ class BannerAdminController extends ModuleAdminController
     {
         $this->table = 'multi_banner';
         $this->identifier = 'id_multi_banner';
-        $this->className = 'Banner_db';
+        $this->className = 'Banner_Db';
         $this->lang = false;
 
         $this->bootstrap = true;
@@ -39,13 +39,11 @@ class BannerAdminController extends ModuleAdminController
             'color' => [
                 'title' => $this->l('Text Color'),
                 'align' => 'center',
-                //'callback' => 'formatColor',
                 'callback_object' => $this
             ],
             'background_color' => [
                 'title' => $this->l('Background Color'),
                 'align' => 'center',
-                //'callback' => 'formatColor',
                 'callback_object' => $this
             ],
             'content' => [
@@ -114,7 +112,7 @@ class BannerAdminController extends ModuleAdminController
 
         if ($this->display == 'add' || $this->display == 'edit') {
             $this->page_header_toolbar_btn['back_to_list'] = array(
-                'href' => Context::getContext()->link->getAdminLink('BannerAdmin'),
+                'href' => Context::getContext()->link->getAdminLink('Admin'),
                 'desc' => $this->l('Back to list', null, null, false),
                 'icon' => 'process-icon-back',
             );

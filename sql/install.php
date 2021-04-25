@@ -14,5 +14,5 @@ $sql = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'multi_banner` (
 ) ENGINE = ' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8';
 
 if (Db::getInstance()->execute($sql) == false) {
-    return false;
+    return true;
 }
