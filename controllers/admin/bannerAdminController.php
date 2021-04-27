@@ -1,6 +1,4 @@
 <?php
-// Require Models
-//require_once(dirname(__FILE__) . '/classes/bannerDb.php');
 
 class BannerAdminController extends ModuleAdminController
 {
@@ -32,7 +30,7 @@ class BannerAdminController extends ModuleAdminController
         ];
 
         $this->fields_list = [
-            'id_programmatic_header' => [
+            'id_multi_banner' => [
                 'title' => $this->l('ID'),
                 'align' => 'center',
             ],

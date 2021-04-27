@@ -84,15 +84,11 @@ class Banner extends Module
         $languages = Language::getLanguages();
         foreach($languages as $lang){
             $tab->name [$lang['id_lang']] = $this->l('BannerAdmin');
-        } 
-        try { 
-            $tab->save();
-        }catch(Exception $e){
-            echo $e->getMessage();
-            return false;
-        }
- 
-        return true;
+        }      
+        
+        $tab->save();
+        
+        return $tab;
         
     }
 
