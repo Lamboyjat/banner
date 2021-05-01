@@ -6,7 +6,7 @@ class BannerAdminController extends ModuleAdminController
     {
         $this->table = 'multi_banner';
         $this->identifier = 'id_multi_banner';
-        $this->className = 'Banner_Db';
+        $this->className = 'BannerDb';
         $this->lang = false;
 
         $this->bootstrap = true;
@@ -110,7 +110,7 @@ class BannerAdminController extends ModuleAdminController
 
         if ($this->display == 'add' || $this->display == 'edit') {
             $this->page_header_toolbar_btn['back_to_list'] = array(
-                'href' => Context::getContext()->link->getAdminLink('Admin'),
+                'href' => Context::getContext()->link->getAdminLink('BannerAdmin'),
                 'desc' => $this->l('Back to list', null, null, false),
                 'icon' => 'process-icon-back',
             );
@@ -137,39 +137,39 @@ class BannerAdminController extends ModuleAdminController
                     'label' => $this->l('BANNER_TEXT_COLOUR'),
                     'desc' => 'Hex Colour Code',
                     'placeholder' => '#ffffff',
-                    'name' => 'TEXT COLOUR',
+                    'name' => 'text_color',
                     'required' => false
                 ],
                 [
                     'type' => 'text',
                     'label' => $this->l('BANNER_BACKGROUND_COLOUR'),
                     'desc' => 'Hex Colour Code (es. #FFFFFF)',
-                    'name' => 'BACKGROUND COLOUR',
+                    'name' => 'background_color',
                     'required' => true,
                 ],
                 [
                     'type' => 'text',
                     'label' => $this->l('Content'),
                     'desc' => 'This is a discount',
-                    'name' => 'BANNER CONTENT',
+                    'name' => 'content',
                     'required' => true
                 ],
                 [
                     'type' => 'date',
-                    'name' => 'BANNER_START_DATE',
+                    'name' => 'start_date',
                     'label' => $this->l('Start Date'),
                     'required' => true
                 ],
                 [
                     'type' => 'date',
-                    'name' => 'BANNER_END_DATE',
+                    'name' => 'end_date',
                     'label' => $this->l('End Date'),
                     'required' => false
                 ],
                 [
                     'type' => 'switch',
                     'label' => $this->l('Live Mode (Always)'),
-                    'name' => 'BANNER_LIVE_MODE',
+                    'name' => 'active',
                 ],
             ],
             'submit' => [

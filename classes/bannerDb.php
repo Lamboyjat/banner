@@ -3,7 +3,7 @@
 class BannerDb extends ObjectModel
 {
     public $id;
-    public $color;
+    public $text_color;
     public $background_color;
     public $content;
     public $start_date;

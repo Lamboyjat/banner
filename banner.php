@@ -6,7 +6,7 @@ if (!defined('_PS_VERSION_')) {
 }
 
 // Require Models
-require_once(dirname(__FILE__) . '/classes/bannerDb.php');
+require_once(dirname(__FILE__) . '/classes/BannerDb.php');
 
 class Banner extends Module
 {
@@ -79,7 +79,7 @@ class Banner extends Module
         $tab  =  new Tab();
         $tab->class_name = 'BannerAdmin';
         $tab->module = $this->name;
-        $tab->id_parent = Tab::getIdFromClassName('DEFAULT');
+        $tab->id_parent = Tab::getIdFromClassName('BannerAdmin');
         $tab->icon = 'settings_applications';
         $languages = Language::getLanguages();
         foreach($languages as $lang){
@@ -216,7 +216,6 @@ class Banner extends Module
                     array(
                         'col' => 5,
                         'type' => 'text',
-                        //'prefix' => '<i class="icon icon-envelope"></i>',
                         'desc' => $this->l('Priority'),
                         'name' => 'BANNER_PRIORITY',
                         'label' => $this->l('Header Priority'),
